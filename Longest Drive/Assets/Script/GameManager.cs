@@ -3,10 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public Animator StartAnim;
+    public TextMeshProUGUI highscoreText;
+    public TextMeshProUGUI currentscoreText;
+    int CurrentScore;
+    int HiScore;
+
+    void Start()
+    {
+        CheckHighScore();
+    }
+    public void CheckHighScore()
+    {
+        CurrentScore = PlayerPrefs.GetInt("CurrentScore");
+        if(CurrentScore > PlayerPrefs.GetInt("HighScore", CurrentScore))
+        {
+            PlayerPrefs.SetInt("HighScore", CurrentScore);
+        }
+        UpdateHighScoreText();
+    }
+    public void UpdateHighScoreText()
+    {
+        currentscoreText.text = CurrentScore.ToString();
+        highscoreText.text = PlayerPrefs.GetInt("HighScore").ToString();
+    }
+
     public void PlayButton()
     {
         StartCoroutine(LoadScenePlay());

@@ -22,9 +22,11 @@ public class PlayerMovement : MonoBehaviour
     public Animator ScorePop;
     public int HighScore;
     public float timeLeft = 3.0f;
+    public FloatingJoystick js;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        PlayerPrefs.SetInt("CurrentScore", 0);
     }
 
     void Update()
@@ -34,14 +36,14 @@ public class PlayerMovement : MonoBehaviour
         {
             HealthText.text = health.ToString();
 
-            float InputX = Input.GetAxis("Horizontal");
-            float InputY = Input.GetAxis("Vertical");
+            float InputX = js.Horizontal;
+            float InputY = js.Vertical;
             movement = new Vector2(InputX, InputY).normalized;
 
             AddTenPoints();
 
             if (health == 0)
-            {
+            {    
                 StartCoroutine(DeadAnim());
                 //SceneManager.LoadScene("Game Over");
             }
@@ -60,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if( health == 0)
         {
+            PlayerPrefs.SetInt("CurrentScore", score);
             ScoreText.text = score.ToString();
         }
     }

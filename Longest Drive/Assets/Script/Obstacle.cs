@@ -26,5 +26,13 @@ public class Obstacle : MonoBehaviour
             Debug.Log(other.GetComponent<PlayerMovement>().health);
             Destroy(gameObject);
         }
+        if (other.CompareTag("Health"))
+        {
+            if(other.GetComponent<PlayerMovement>().health < 3)
+            {
+                other.GetComponent<PlayerMovement>().health += 1;
+                Destroy(gameObject);
+            }
+        }
     }
 }
