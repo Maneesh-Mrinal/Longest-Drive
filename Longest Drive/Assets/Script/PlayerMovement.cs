@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public int HighScore;
     public float timeLeft = 3.0f;
     public FloatingJoystick js;
+    public int isHit = 0;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -76,7 +77,8 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator FlashCo()
     {
         int temp = 0;
-        triggerCollider.enabled = false;
+        //triggerCollider.enabled = false;
+        isHit = 1;
         while (temp < numberOfFlashes)
         {
             playerSprite.color = flashColor;
@@ -85,7 +87,8 @@ public class PlayerMovement : MonoBehaviour
             yield return new WaitForSeconds(flashDuration);
             temp++;
         }
-        triggerCollider.enabled = true;
+        //triggerCollider.enabled = true;
+        isHit = 0;
     }
     private IEnumerator DeadAnim()
     {

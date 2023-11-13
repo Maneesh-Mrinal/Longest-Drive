@@ -21,10 +21,13 @@ public class Obstacle : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //player hits = Takes damage !
-            other.GetComponent<PlayerMovement>().health -= damage;
-            Debug.Log(other.GetComponent<PlayerMovement>().health);
-            Destroy(gameObject);
+            if(other.GetComponent<PlayerMovement>().isHit == 0)
+            {
+                //player hits = Takes damage !
+                other.GetComponent<PlayerMovement>().health -= damage;
+                Debug.Log(other.GetComponent<PlayerMovement>().health);
+                Destroy(gameObject);
+            }
         }
         if (other.CompareTag("Health"))
         {
