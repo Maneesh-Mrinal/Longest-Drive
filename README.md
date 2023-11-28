@@ -28,7 +28,7 @@ The primary goal is to survive as long as possible, maneuvering through the traf
 5. Aim for the longest distance to set a highscore.
 
 ## Release
-The latest APK file for the game can be found [here](). Download and install it on your Android device to enjoy the game on the go.
+The latest APK file for the game can be found [here](https://github.com/Maneesh-Mrinal/Longest-Drive/releases). Download and install it on your Android device to enjoy the game on the go.
 
 ## Contributing
 If you'd like to contribute to LONGEST-DRIVE, feel free to fork the repository and submit a pull request with your proposed changes.
