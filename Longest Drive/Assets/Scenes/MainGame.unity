@@ -791,7 +791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba7672035a8f52458b784d53d7e3eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundspeed: 1
+  backgroundspeed: 0.4
   backgroundRenderer: {fileID: 989023871}
 --- !u!64 &989023870
 MeshCollider:
@@ -1685,6 +1685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 15
+  rb: {fileID: 1389466505}
   HealthText: {fileID: 1325279412}
   ScoreText: {fileID: 2028077756}
   health: 3
@@ -1794,7 +1795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba7672035a8f52458b784d53d7e3eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundspeed: 1
+  backgroundspeed: 0.4
   backgroundRenderer: {fileID: 1460661032}
 --- !u!64 &1460661031
 MeshCollider:
@@ -2368,7 +2369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba7672035a8f52458b784d53d7e3eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundspeed: 1
+  backgroundspeed: 0.4
   backgroundRenderer: {fileID: 1691994271}
 --- !u!1 &1736864928
 GameObject:
