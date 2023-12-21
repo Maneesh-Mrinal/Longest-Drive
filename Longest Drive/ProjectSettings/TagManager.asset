@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - Health
+  - Power
   layers:
   - Default
   - TransparentFX
