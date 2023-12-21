@@ -14,11 +14,12 @@ The primary goal is to survive as long as possible, maneuvering through the traf
 - **Endless Gameplay:** The game continues until the car collides with an obstacle.
 - **Highscore System:** Compete to achieve the longest distance traveled.
 - **Extra Lives:** Additional lives are available on the road to extend your gameplay.
+- **Star Power:** Invincibility to Player's Car Dashing above every obstacle/road encounters
 
 ## Getting Started
 
 ### Installation
-- #realease
+- #Realease
 
 ### How to Play
 1. Launch the game.
