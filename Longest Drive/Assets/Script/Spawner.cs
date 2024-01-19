@@ -8,6 +8,9 @@ public class Spawner : MonoBehaviour
 {
     
     public GameObject[] obstaclePatterns;
+    public GameObject[] ExtraSpawn;
+
+    private PlayerMovement player;
 
     private float timeBtwSpawn;
     public float startTimeBtwSpawn;
@@ -17,12 +20,15 @@ public class Spawner : MonoBehaviour
     public TMP_Text startText;
     public GameObject Timer1;
     public Animator EndAnim;
+    int spawnReset = 4;
+    int isSpawnedExtra = 0;
     public void Start()
     {
         StartCoroutine(EndScene());
     }
     void Update()
     {
+        Debug.Log(isSpawnedExtra);
         timeLeft -= Time.deltaTime;
         startText.text = (timeLeft).ToString("0");
         if (timeLeft < 0)
@@ -31,8 +37,28 @@ public class Spawner : MonoBehaviour
             //Do something useful or Load a new game scene
             if (timeBtwSpawn <= 0)
             {
-                int rand = Random.Range(0, obstaclePatterns.Length);
-                Instantiate(obstaclePatterns[rand], transform.position, Quaternion.identity);
+                int randObs = Random.Range(0, obstaclePatterns.Length);
+                int randExtra = Random.Range(0, ExtraSpawn.Length);
+                if (spawnReset > 0)
+                {
+                    Instantiate(obstaclePatterns[randObs], transform.position, Quaternion.identity);
+                    spawnReset--;
+                }
+                else if (spawnReset == 0)
+                {
+                    isSpawnedExtra = Random.Range(0, 2);
+                    if(isSpawnedExtra == 1)
+                    {
+                        Instantiate(obstaclePatterns[randObs], transform.position, Quaternion.identity);
+                    }
+                    else if (isSpawnedExtra == 0)
+                    {
+                        Instantiate(ExtraSpawn[randExtra], transform.position, Quaternion.identity);
+                        isSpawnedExtra = 1;
+                        spawnReset = 5;
+                    }
+                }
+
                 timeBtwSpawn = startTimeBtwSpawn;
 
                 if (startTimeBtwSpawn > minTime)
@@ -45,6 +71,7 @@ public class Spawner : MonoBehaviour
             {
                 timeBtwSpawn -= Time.deltaTime;
             }
+            //Debug.Log(spawnReset);
         }
     }
     private IEnumerator EndScene()
