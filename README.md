@@ -38,7 +38,7 @@ If you'd like to contribute to LONGEST-DRIVE, feel free to fork the repository a
 This game was created by [Maneesh Mrinal S]. Special thanks to [any resources or contributors you want to acknowledge].
 
 ## Support or Contact
-For any issues or inquiries, feel free to contact [maneesh.mrinal6@gmail.com]
+For any issues or inquiries, feel free to contact [mailto:maneesh.mrinal6@gmail.com]
 
 ## License
 - MIT License
