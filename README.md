@@ -40,4 +40,7 @@ This game was created by [Maneesh Mrinal S]. Special thanks to [any resources or
 ## Support or Contact
 For any issues or inquiries, feel free to contact [mailto:maneesh.mrinal6@gmail.com]
 
+##License
+MIT License
+
 Enjoy playing LONGEST-DRIVE!
