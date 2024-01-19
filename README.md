@@ -19,8 +19,8 @@ The primary goal is to survive as long as possible, maneuvering through the traf
 ## Getting Started
 
 ### Installation
-- #Realease
-
+- [Install APK File here](https://github.com/Maneesh-Mrinal/Longest-Drive/releases)
+  
 ### How to Play
 1. Launch the game.
 2. Use the provided controls to move the car.
@@ -39,5 +39,8 @@ This game was created by [Maneesh Mrinal S]. Special thanks to [any resources or
 
 ## Support or Contact
 For any issues or inquiries, feel free to contact [mailto:maneesh.mrinal6@gmail.com]
+
+## License
+- MIT License
 
 Enjoy playing LONGEST-DRIVE!
