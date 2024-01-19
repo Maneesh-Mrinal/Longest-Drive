@@ -20,7 +20,7 @@ The primary goal is to survive as long as possible, maneuvering through the traf
 
 ### Installation
 - [Install APK File here](https://github.com/Maneesh-Mrinal/Longest-Drive/releases)
-- 
+  
 ### How to Play
 1. Launch the game.
 2. Use the provided controls to move the car.
