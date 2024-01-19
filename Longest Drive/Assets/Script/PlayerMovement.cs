@@ -1,12 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Unity.Services.Authentication;
-using Unity.Services.CloudSave;
-using Unity.Services.CloudSave.Models;
-using Unity.Services.Core;
 using TMPro;
 
 public class PlayerMovement : MonoBehaviour
@@ -26,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public int numberOfFlashesPower;
     public Collider2D triggerCollider;
     public SpriteRenderer playerSprite;
-    public float score = 0;
+    public float score;
     public Animator ScorePop;
     public int HighScore;
     public float timeLeft = 3.0f;
@@ -35,18 +30,12 @@ public class PlayerMovement : MonoBehaviour
     public bool isPowered = false;
     public GameObject SpawnerObject;
     
-    private async void Awake()
-    {
-        await UnityServices.InitializeAsync();
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();        
-    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        PlayerPrefs.SetInt("CurrentScore", 0);
     }
 
-    async void Update()
+    void Update()
     {
         timeLeft -= Time.deltaTime;
         if (timeLeft < 0)
@@ -57,15 +46,19 @@ public class PlayerMovement : MonoBehaviour
             float InputY = js.Vertical;
             movement = new Vector2(InputX, InputY).normalized;
 
-            AddTenPoints();
+            AddPoints();
 
             if (health == 0)
             {
                 Destroy(SpawnerObject);
                 playerSpeed = 0f;
+                LoadPlayerHighScore();
+                if( (int)score > HighScore)
+                {
+                    HighScore = (int)score;
+                }
+                SavePlayer();
                 StartCoroutine(DeadAnim());
-                await SaveScore("MyCurrentScore",score.ToString());
-                HighScoreUpdate();
                 //SceneManager.LoadScene("Game Over");
             }
         }
@@ -74,16 +67,15 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(movement.x * playerSpeed, movement.y * playerSpeed);
     }
-    public void AddTenPoints()
+    public void AddPoints()
     {
         if(health > 0)
         {
-            score += 100 * Time.deltaTime;
+            score += 50 * Time.deltaTime;
             ScoreText.text = ((int)score).ToString();
         }
         else if( health == 0)
         {
-            PlayerPrefs.SetFloat("CurrentScore", score);
             ScoreText.text = ((int)score).ToString();
         }
     }
@@ -99,69 +91,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public async void HighScoreUpdate()
+    public void SavePlayer ()
     {
-        int CurScore = await GetScore<int>("MyCurrentScore");
-        int HiScore = await GetScore<int>("MyHighScore");
-        if(CurScore>HiScore)
-        {
-            await SaveScore("MyHighScore",CurScore.ToString());
-        }
+        SaveSystem.SavePlayer(this);
     }
-
-    private async Task<T> GetScore<T>(string key)
+    public void LoadPlayer ()
     {
-        try
-        {
-            var data = await CloudSaveService.Instance.Data.Player.LoadAsync(
-                new HashSet<string> { key }
-            );
-
-            if (data.TryGetValue(key, out var item))
-            {
-                return item.Value.GetAs<T>();
-            }
-            else
-            {
-                Debug.Log($"There is no such key as {key}!");
-            }
-        }
-        catch (CloudSaveValidationException e)
-        {
-            Debug.LogError(e);
-        }
-        catch (CloudSaveRateLimitedException e)
-        {
-            Debug.LogError(e);
-        }
-        catch (CloudSaveException e)
-        {
-            Debug.LogError(e);
-        }
-        return default;
+        PlayerData data = SaveSystem.LoadPlayer();
+        HighScore = data.highScore;
+        score = data.currentScore;
     }
-
-    private async Task SaveScore(string key, string value)
+    public void LoadPlayerHighScore()
     {
-        try
-        {
-            var data = new Dictionary<string, object>{{key, value}};
-            await CloudSaveService.Instance.Data.Player.SaveAsync(data);
-        }
-        catch (CloudSaveValidationException e)
-        {
-            Debug.LogError(e);
-        }
-        catch (CloudSaveRateLimitedException e)
-        {
-            Debug.LogError(e);
-        }
-        catch (CloudSaveException e)
-        {
-            Debug.LogError(e);
-        }    
+        PlayerData data = SaveSystem.LoadPlayer();
+        HighScore = data.highScore;
     }
-
     private IEnumerator FlashCo()
     {
         int temp = 0;

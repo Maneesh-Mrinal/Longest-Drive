@@ -3,26 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-/*using Unity.Services.Authentication;
-using Unity.Services.CloudSave;
-using Unity.Services.CloudSave.Models;
-using Unity.Services.Core;
-using System.Threading.Tasks;*/   
 using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
     public Animator StartAnim;
     public TextMeshProUGUI highscoreText;
     public TextMeshProUGUI currentscoreText;
-    int CurrentScore;
-    int HiScore;
+    public int currentScore;
+    public int highScore;
 
     void Start()
     {
-        
+        LoadPlayer();
     }
-
+    void Update()
+    {
+        highscoreText.text = highScore.ToString();
+        currentscoreText.text = currentScore.ToString();
+    }
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        highScore = data.highScore;
+        currentScore = (int)data.currentScore;
+    }
     public void PlayButton()
     {
         StartCoroutine(LoadScenePlay());
