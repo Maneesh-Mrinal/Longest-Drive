@@ -31,6 +31,12 @@ The primary goal is to survive as long as possible, maneuvering through the traf
 ## Release
 The latest APK file for the game can be found [here](https://github.com/Maneesh-Mrinal/Longest-Drive/releases). Download and install it on your Android device to enjoy the game on the go.
 
+## Gameplay
+
+https://github.com/Maneesh-Mrinal/Longest-Drive/assets/93015133/29e44bd6-02df-4f34-b7e8-a41598b4d866
+
+[Watch the Gameplay Video!](https://www.youtube.com/watch?v=kQRrOUNV1kM)
+
 ## Contributing
 If you'd like to contribute to LONGEST-DRIVE, feel free to fork the repository and submit a pull request with your proposed changes.
 
